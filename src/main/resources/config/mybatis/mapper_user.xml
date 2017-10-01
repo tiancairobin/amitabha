@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.utpscm.amitabha.security.dao.AmitabhaUserDao">
+	<resultMap id="userMap" type="AmitabhaUser">
+		<id column="id" property="id"></id>
+		<result column="account" property="account"></result>
+		<result column="first_name" property="firstName"></result>
+		<result column="last_name" property="lastName"></result>
+		<result column="password" property="password"></result>
+		<result column="desc" property="desc"></result>
+		<result column="enabled" property="enabled"></result>
+	</resultMap>
+
+	<select id="queryUserByAccount" parameterType="string" resultMap="userMap">
+		SELECT *
+		FROM user
+		<where>
+            account = #{account}
+		</where>
+	</select>
+	
+	<select id="queryUserById" parameterType="int" resultMap="userMap">
+        SELECT *
+        FROM user
+        <where>
+            id = #{id}
+        </where>
+    </select>
+</mapper>

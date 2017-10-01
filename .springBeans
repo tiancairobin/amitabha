@@ -7,10 +7,12 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>src/main/resources/config/spring/spring-security.xml</config>
+		<config>src/main/resources/config/spring/spring-datasource.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/resources/config/spring/dispatcher-servlet.xml</config>
+		<config>src/main/resources/config/spring/spring-core.xml</config>
+		<config>src/main/resources/config/spring/spring-dal.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>
