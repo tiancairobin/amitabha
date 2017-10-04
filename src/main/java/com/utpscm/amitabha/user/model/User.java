@@ -1,6 +1,6 @@
 package com.utpscm.amitabha.user.model;
 
-public class AmitabhaUser {
+public class User {
 
 	private Integer id;
 	private String username;

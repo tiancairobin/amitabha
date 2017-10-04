@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager" />
+        <property name="loginUrl" value="@{cas.login.url}" />
+        <property name="successUrl" value="/home/index.htm"></property>
+        <property name="filters">
+            <map>
+                <entry key="casFilter" value-ref="casFilter" />
+<!--                <entry key="logout" value-ref="logout" /> -->
+            </map>
+        </property>
+        <property name="filterChainDefinitions">
+            <value>
+                /shiro-cas = casFilter
+                /logout = logout
+                /**/ajax/** = anon
+                /product/** = roles[ROLE_USER]
+                /user/** = roles[ROLE_USER]
+                /group/** = roles[ROLE_USER]
+                /tab/** = roles[ROLE_USER]
+                /role/** = roles[ROLE_USER]
+                /resource/** = roles[ROLE_USER]
+                /dict/** = roles[ROLE_USER]
+                /home/** = roles[ROLE_USER]
+                /recommend/hotlink/** = roles[ROLE_USER]
+                /recommend/rule/** = roles[ROLE_USER]
+                /recommend/** = anon
+                /intf/** = anon
+                /** = anon
+                /system/** = roles[ROLE_USER]
+            </value>
+        </property>
+    </bean>
+    
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="sampleRealm"/>
+        <property name="sessionManager" ref="sessionManager"/>
+        <property name="rememberMeManager" ref="rememberMeManager"/>
+        <property name="cacheManager" ref="customShiroCacheManager"/>
+    </bean>
+
+</beans>
