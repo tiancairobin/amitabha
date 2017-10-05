@@ -30,14 +30,14 @@
 		<servlet-name>dispatcherServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	<!-- <servlet-mapping> -->
-	<!-- <servlet-name>dispatcherServlet</servlet-name> -->
-	<!-- <url-pattern>*.htm</url-pattern> -->
-	<!-- </servlet-mapping> -->
-	<!-- <servlet-mapping> -->
-	<!-- <servlet-name>dispatcherServlet</servlet-name> -->
-	<!-- <url-pattern>*.action</url-pattern> -->
-	<!-- </servlet-mapping> -->
+	<servlet-mapping>
+	<servlet-name>dispatcherServlet</servlet-name>
+	<url-pattern>*.htm</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+	<servlet-name>dispatcherServlet</servlet-name>
+	<url-pattern>*.action</url-pattern>
+	</servlet-mapping>
 
 	<filter>
 		<filter-name>shiroFilter</filter-name>

@@ -12,7 +12,7 @@ import org.springframework.util.StringUtils;
 import com.utpscm.amitabha.user.dao.UserDao;
 import com.utpscm.amitabha.user.model.User;
 
-@Repository("amitabhaUserDao")
+@Repository("userDao")
 public class UserDaoImpl implements UserDao {
 
 	private static final String NAME_SPACE = "com.utpscm.amitabha.user.dao.UserDao.";

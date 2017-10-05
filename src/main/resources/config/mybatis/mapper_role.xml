@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.utpscm.amitabha.role.dao.RoleDao">
+	
+	<select id="queryRolesByUsername" parameterType="string" resultType="string">
+		SELECT r.name
+        FROM user_role ur
+        LEFT JOIN user u ON ur.user_id = u.id
+        LEFT JOIN role r ON ur.role_id = r.id
+        <where>u.username = #{username};</where>
+	</select>
+	
+	<select id="queryRolesByUserId" parameterType="int" resultType="string">
+        SELECT r.name
+        FROM user_role ur
+        LEFT JOIN role r ON ur.role_id = r.id
+        <where>ur.user_id = #{id};</where>
+    </select>
+    
+</mapper>

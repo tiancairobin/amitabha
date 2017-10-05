@@ -41,7 +41,10 @@ public class UserRealm extends AuthorizingRealm{
 
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authToken) throws AuthenticationException {
-		User user = userService.login((String) authToken.getPrincipal(), (String) authToken.getCredentials());
+		String username = (String) authToken.getPrincipal();
+		char[] pw = (char[]) authToken.getCredentials();
+		String password = new String(pw);
+		User user = userService.login(username, password);
 		if (user == null) {
 			//	user doesn't exist or password incorrect
 			throw new AuthenticationException("帐号或密码不正确！");
@@ -49,5 +52,4 @@ public class UserRealm extends AuthorizingRealm{
 			return new SimpleAuthenticationInfo(user.getUsername(), user.getPassword(), getName());
 		}
 	}
-
 }
