@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager" />
@@ -10,12 +11,18 @@
         <property name="unauthorizedUrl" value="/403.htm" />
         <property name="filterChainDefinitions">
             <value>
-                /logout = anon
-                /login = anon
+                /logout* = anon
+                /login* = anon
                 /index.htm = anon
-                /secret.htm = roles[super_admin]
+                /error/** = anon
+                /** = menu
             </value>
         </property>
+        <property name="filters">
+           <util:map>
+              <entry key="menu" value-ref="menuFilter"/>
+           </util:map>
+       </property>
     </bean>
     
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">  
@@ -23,5 +30,7 @@
     </bean>
     
     <bean id="userRealm" class="com.utpscm.amitabha.shiro.token.UserRealm"/>
+    
+    <bean id="menuFilter" class="com.utpscm.amitabha.shiro.filter.MenuFilter"/>
 
 </beans>

@@ -13,6 +13,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
+import com.utpscm.amitabha.menu.service.MenuService;
 import com.utpscm.amitabha.role.service.RoleService;
 import com.utpscm.amitabha.user.model.User;
 import com.utpscm.amitabha.user.service.UserService;
@@ -25,6 +26,9 @@ public class UserRealm extends AuthorizingRealm{
 	@Resource
 	private RoleService roleService;
 	
+	@Resource
+	private MenuService menuService;
+	
 	@Override
 	public String getName() {
 		return "userRealm";
@@ -35,7 +39,9 @@ public class UserRealm extends AuthorizingRealm{
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		String username = (String) principals.getPrimaryPrincipal();
 		Set<String> roles = roleService.queryRolesByUsername(username);
+		Set<String> menus = menuService.queryMenusByUsername(username);
 		info.setRoles(roles);
+		info.setStringPermissions(menus);
 		return info;
 	}
 

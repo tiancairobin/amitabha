@@ -15,7 +15,7 @@ import com.utpscm.amitabha.role.dao.RoleDao;
 @Repository("roleDao")
 public class RoleDaoImpl implements RoleDao {
 	
-private static final String NAME_SPACE = "com.utpscm.amitabha.role.dao.RoleDao.";
+	private static final String NAME_SPACE = "com.utpscm.amitabha.role.dao.RoleDao.";
 	
 	@Resource
 	private SqlSessionTemplate sqlSessionTemplate;
